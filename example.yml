@@ -19,7 +19,7 @@ server:
       keyStorePath: example.keystore
       keyStorePassword: example
       validateCerts: false
-
+      
 # Logging settings.
 logging:
   # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
