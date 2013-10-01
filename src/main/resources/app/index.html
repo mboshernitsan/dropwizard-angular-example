@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" ng-app="pointyApp">
+<head>
+<meta charset="utf-8">
+<title>Pointy Patient</title>
+<link rel="stylesheet"
+    href="/webjars/bootstrap/2.3.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <ul class="nav">
+                    <li><a href="#/patients">List Patients</a></li>
+                    <li><a href="#/registerPatient">Register
+                            Patient</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <ng-view></ng-view>
+
+    </div>
+    <!-- Libraries -->
+
+    <script src="/webjars/angularjs/1.2.0rc1/angular.js"></script>
+    <script src="/webjars/angularjs/1.2.0rc1/angular-resource.js"></script>
+    <script src="/webjars/angularjs/1.2.0rc1/angular-route.js"></script>
+    <script src="/webjars/underscorejs/1.5.1/underscore.js"></script>
+
+    <script
+        src="/webjars/angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.js"></script>
+
+    <!-- Routes and config-->
+    <script src="js/app.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/CommonController.js"></script>
+    <script src="js/controllers/PatientController.js"></script>
+
+    <!-- Services -->
+    <script src="js/services/PatientService.js"></script>
+</body>
+</html>

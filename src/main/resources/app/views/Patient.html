@@ -1,0 +1,31 @@
+<div style="padding-left:20px; padding-right:20px">
+    <div class="container" >
+        <h4>Edit Patient</h4>
+		<alert ng-show=$parent.showFeedback close="closeAlert()" type=alertType>{{status}}</alert>
+		<button type="submit" class="btn btn-primary" ng-click="newPatient(patient)">New</button>
+        <hr/>
+        <div ng-init="patientDetail()" />
+        <form name="patientForm">
+            <fieldset>
+                <label for="firstName">Name:</label>
+                <input id="firstName" type="text" required placeholder="First Name..." ng-model="patient.firstName" />
+                <input id="lastName" type="text" required placeholder="Last Name..." ng-model="patient.lastName" />                
+                <label for="visitDate">Visit Date:</label>
+	            <input id="visitDate" type="text" required datepicker-popup="MM-dd-yyyy" ng-model="patient.visitDate" /> 
+                <label for="visitLocation">Location:</label>
+                <input id="visitLocation" type="text"  placeholder="Address..." ng-model="patient.address" />
+                <br />
+                <input id="visitCity" type="text"  class="input-small" placeholder="City..." ng-model="patient.city" />
+                <input id="visitState" type="text"  class="input-small" placeholder="State..." ng-model="patient.state" />
+                
+                <input id="id" type="hidden"  ng-model="patient.id" />
+            </fieldset>
+
+            <br />
+
+            <button id="save-patient-button" type="submit" class="btn btn-primary"  ng-click="savePatient(patient, patientForm)">Save</button>
+            <button id="delete-patient-button" type="button" class="btn btn-default" ng-click="deletePatient()">Delete</button>
+
+        </form>
+    </div>   
+</div>

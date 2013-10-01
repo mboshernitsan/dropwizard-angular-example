@@ -1,6 +1,10 @@
-template: Hello, %s!
+defaultPatient:
+  firstName: Don
+  lastName: Pedro
+  address: 123 Main St
+  city: San Francisco
+  state: CA
 
-defaultName: Stranger
 
 server:
   applicationConnectors:
