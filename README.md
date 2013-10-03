@@ -7,7 +7,6 @@ rewrote the back-end using Dropwizard, which I find ideal for building REST back
 
 TODO before this example is complete (roughly in order):
 
-* Implement a DB backend
 * Add Java unit tests
 * Add JS unit tests
 * Add e2e unit tests

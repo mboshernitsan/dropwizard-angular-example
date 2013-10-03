@@ -23,7 +23,10 @@ function PatientController($scope, PatientService, $routeParams) {
 
     $scope.listPatients = function() {
         PatientService.list().then(function(o) {
-            $scope.patientList = o;
+            $scope.patientList = {};
+            _.each(o, function(patient) {
+                $scope.patientList[patient.id] = patient;
+            });
             if (o.length == 0) {
                 showAlert("warning", "No patients registered!");
             } else {
@@ -44,15 +47,14 @@ function PatientController($scope, PatientService, $routeParams) {
         }
     };
 
-    $scope.deletePatient = function() {
-        if ($routeParams != undefined && $routeParams.patientId != undefined) {
-            PatientService.deletePatient($routeParams.patientId).get().then(function(object) {
-                $scope.patient = {};
-                showAlert("info", "Deleted patient with Id: " + $routeParams.patientId);
-            }, function(e) {
-                showAlert("error", "Error deleting patient. " + e);
-            });
-        }
+    $scope.deletePatient = function(id) {
+        PatientService.deletePatient(id).then(function(object) {
+            $scope.patient = {};
+            delete $scope.patientList[id];
+            showAlert("info", "Deleted patient with Id: " + id);
+        }, function(e) {
+            showAlert("error", "Error deleting patient. " + e);
+        });
     };
 
     /**

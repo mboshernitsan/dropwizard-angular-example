@@ -3,13 +3,13 @@
 pointyApp.factory('PatientService', ['$resource',
 
 function($resource) {
-    function fromJSON(patient) {
+    function unmarshalled(patient) {
         var p = _.clone(patient);
         p.visitDate = new Date(patient.visitDate);
         return p;
     }
 
-    function toJSON(patient) {
+    function marshalled(patient) {
         var p = _.clone(patient);
         p.visitDate = patient.visitDate.getTime();
         return p;
@@ -17,13 +17,13 @@ function($resource) {
 
     return {
         save : function(patient) {
-            return $resource('/patients').save(toJSON(patient)).$promise;
+            return $resource('/patients').save(marshalled(patient)).$promise;
         },
 
         list : function() {
             return $resource('/patients').query().$promise.then(function(patientList) {
                 return _.map(patientList, function(patient) {
-                    return fromJSON(patient);
+                    return unmarshalled(patient);
                 });
             });
         },
@@ -32,7 +32,7 @@ function($resource) {
             return $resource('/patients/:id').get({
                 id : id
             }).$promise.then(function(patient) {
-                return fromJSON(patient);
+                return unmarshalled(patient);
             });
         },
 

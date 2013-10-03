@@ -1,10 +1,9 @@
-defaultPatient:
-  firstName: Don
-  lastName: Pedro
-  address: 123 Main St
-  city: San Francisco
-  state: CA
-
+dbConfig:
+  host: ds047478.mongolab.com
+  port: 47478
+  dbName: experimental
+  password: test123
+  user: test
 
 server:
   applicationConnectors:

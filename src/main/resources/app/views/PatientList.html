@@ -1,26 +1,32 @@
-<div style="padding-left:20px; padding-right:20px">
-    <div class="container" >
+<div style="padding-left: 20px; padding-right: 20px">
+    <div class="container">
         <h4>List Patients</h4>
-        <hr/>
-	    <alert ng-show=$parent.showFeedback close="closeAlert()" type=alertType>{{status}}</alert>
-		<table ng-init="listPatients()" class="table">  
-	        <thead>  
-	          <tr>  
-	            <th>Patient-ID</th>  
-	            <th>First Name</th>  
-	            <th>Last Name</th>  
-	            <th>Visit Date</th>  
-	          </tr>  
-	        </thead>  
-	        <tbody ng-repeat="patient in patientList">  
-	          <tr>  
-	            <td><a href="#/patientDetail/{{patient.id}}">{{patient.id}}</a></td>  
-	            <td>{{patient.firstName}} </td>  
-	            <td>{{patient.lastName}}</td>  
-	            <td>{{patient.visitDate | date:'MM/dd/yyyy' }}</td>  
-	          </tr>  
-	        </tbody>  
-	      </table>  
+        <hr />
+        <alert ng-show=$parent.showFeedback close="closeAlert()"
+            type=alertType>{{status}}</alert>
+        <table ng-init="listPatients()" class="table">
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Visit Date</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="(id, patient) in patientList">
+                <tr>
+                    <td><a href="#/patientDetail/{{patient.id}}">{{patient.firstName}}
+                            {{patient.lastName}}</a></td>
+                    <td>{{patient.address}}</td>
+                    <td>{{patient.city}}</td>
+                    <td>{{patient.state}}</td>
+                    <td>{{patient.visitDate | date:'MM/dd/yyyy' }}</td>
+                    <td><a href=""
+                        ng-click="deletePatient('{{patient.id}}')">delete</a></td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
 </div>
