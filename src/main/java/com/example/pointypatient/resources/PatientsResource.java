@@ -3,7 +3,6 @@ package com.example.pointypatient.resources;
 import java.util.Collection;
 
 import javax.validation.Valid;
-import javax.validation.ValidationException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -15,10 +14,11 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.bson.types.ObjectId;
+
 import com.example.pointypatient.core.Patient;
-import com.example.pointypatient.db.ObjectIdJSONUtils;
+import com.example.pointypatient.db.MongoUtils;
 import com.example.pointypatient.db.PatientDAO;
-import com.mongodb.WriteResult;
 
 /**
  * A simple JAX-RS service for accessing patients information. Note that @Consumes
@@ -41,14 +41,20 @@ public class PatientsResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<Patient> getPatientList() {
-        return patientDAO.find().asList();
+        return patientDAO.getPatientList();
     }
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Patient getPatient(@PathParam("id") String id) {
-        Patient p = patientDAO.get(ObjectIdJSONUtils.decode(id));
+        ObjectId objectId;
+        try {
+            objectId = MongoUtils.decodeObjectId(id);
+        } catch (IllegalArgumentException e) {
+            throw new WebApplicationException(e, Response.Status.BAD_REQUEST);
+        }
+        Patient p = patientDAO.get(objectId);
         if (p == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
@@ -66,8 +72,13 @@ public class PatientsResource {
     @DELETE
     @Path("/{id}")
     public void deletePatient(@PathParam("id") String id) {
-        WriteResult result = patientDAO.deleteById(ObjectIdJSONUtils.decode(id));
-        if (result.getN() == 0) {
+        ObjectId objectId;
+        try {
+            objectId = MongoUtils.decodeObjectId(id);
+        } catch (IllegalArgumentException e) {
+            throw new WebApplicationException(e, Response.Status.BAD_REQUEST);
+        }
+        if (!patientDAO.deletePatient(objectId)) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
     }

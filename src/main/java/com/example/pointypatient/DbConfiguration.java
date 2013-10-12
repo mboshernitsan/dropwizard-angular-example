@@ -17,15 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DbConfiguration {
     @NotEmpty
     @JsonProperty
-    private String password;
-
-    @NotEmpty
-    @JsonProperty
     private String dbName;
-
-    @NotEmpty
-    @JsonProperty
-    private String user;
 
     @Min(1)
     @Max(65535)
@@ -35,6 +27,13 @@ public class DbConfiguration {
     @NotEmpty
     @JsonProperty
     private String host;
+
+    @JsonProperty
+    private String user;
+
+    @JsonProperty
+    private String password;
+
 
     public String getPassword() {
         return password;

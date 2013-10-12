@@ -1,0 +1,9 @@
+{
+    "id" : null,
+    "firstName" : "Fanny",
+    "lastName" : "Jones",
+    "address" : "789 2nd Ave",
+    "city" : "San Francisco",
+    "state" : "CA",
+    "visitDate" : 1234567890000
+}

@@ -1,4 +1,4 @@
-# This project is under construction.  Check back soon!
+# This project is work-in-progress!
 
 This example project is loosely based on the AngularJS + Spring demo project called Pointy Patient 
 (http://nayidisha.com/techblog/angular-js-from-a-different-angle and https://github.com/pankajtandon/PointyPatient).  I
@@ -7,10 +7,9 @@ rewrote the back-end using Dropwizard, which I find ideal for building REST back
 
 TODO before this example is complete (roughly in order):
 
-* Add Java unit tests
 * Add JS unit tests
 * Add e2e unit tests
-* Implement a customer WebJars bundle so that versions need not be explicitly mentioned other than in the pom.xml
+* Implement a custom WebJars bundle so that versions need not be explicitly mentioned other than in the pom.xml
 * Figure out how to serve index.html from root
 * Add user management and make some operations (e.g., patient editing) require authentication
 * Restrict server communication to HTTPS
